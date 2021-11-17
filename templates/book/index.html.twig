@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book index{% endblock %}
+
+{% block body %}
+
+    {% if app.user is not null %}
+        <div class="row">
+            <div class="col text-center">
+                <a class="btn btn-outline-info" href="{{ path('book_new') }}">Добавить книгу</a>
+            </div>
+        </div>
+    {% endif %}
+
+    {% for book in books %}
+        <div class="row p-1">
+            <div class="col-md-8 offset-md-2 card">
+                {% if book.cover is not null %}
+                    <img class="card-img-top"
+{#                         src="{{ cover_path }}/{{ book.cover }}" #}
+                         src="{{ cover_path }}/{{ book.cover }}"
+                         alt="{{ book.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.author }}</p>
+
+                    <div class="row">
+                        <div class="col-6">
+                            {% if book.allowDownload == true %}
+                                <a class="btn btn-outline-success"
+                                   title="{{ book.originalFileName }}"
+                                   href="{{ path('download', {id: book.id}) }}">Скачать</a>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-6">
+                            {% if app.user is not null %}
+                                <p class="text-right">
+                                    <a href="{{ path('book_edit', {'id': book.id}) }}" class="btn btn-outline-info">
+                                        Редактировать
+                                    </a>
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

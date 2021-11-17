@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Добавить книгу{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-1">
+            <a class="btn btn-outline-secondary" href="{{ path('book_index') }}">Назад</a>
+        </div>
+        <div class="col-11">
+            <h1>Добавить книгу</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ include('book/_form_new.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

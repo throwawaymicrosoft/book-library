@@ -1,0 +1,45 @@
+{{ form_start(form) }}
+
+<div class="row p-2">
+    {% if form.vars.value.cover is not null %}
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12">
+                    <img class="img-thumbnail" src="{{ cover_path }}/{{ form.vars.value.cover|thumbnail('thumb') }}">
+                </div>
+                <div class="col-12">
+                    {{ form_widget(form.delete_cover) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="col-8">
+        <div class="row">
+            <div class="col-12">
+                {{ form_widget(form.cover) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row p-2">
+    {% if form.vars.value.file is not null %}
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <code>{{ form.vars.value.originalFileName }}</code>
+                    </div>
+                    <div class="col-12">
+                        {{ form_widget(form.delete_file) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                {{ form_widget(form.file) }}
+            </div>
+        </div>
+    {% endif %}
+</div>
+{{ form_end(form) }}
+

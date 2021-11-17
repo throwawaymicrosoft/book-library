@@ -1,0 +1,61 @@
+{% extends 'bundles/FOSUserBundle/layout.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+    <div id="form-signin">
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="d-none" id="authForm">
+            {% if error %}
+                <span id="error-message" class="d-none">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </span>
+            {% endif %}
+
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+            {% endif %}
+
+            <div class="form-label-group">
+                <input type="text"
+                       id="username"
+                       name="_username"
+                       value="{{ last_username }}"
+                       required="required"
+                       autocomplete="username"
+                       class="form-control"
+                       placeholder="{{ 'security.login.username'|trans }}"
+                />
+                <label for="username">{{ 'security.login.username'|trans }}</label>
+            </div><!-- / .form-label-group -->
+
+            <div class="form-label-group">
+                <input type="password"
+                       id="password"
+                       name="_password"
+                       required="required"
+                       autocomplete="current-password"
+                       class="form-control"
+                       placeholder="{{ 'security.login.password'|trans }}"
+                />
+                <label for="password">{{ 'security.login.password'|trans }}</label>
+            </div><!-- / .form-label-group -->
+
+            <div class="checkbox mb-3">
+                <input type="checkbox"
+                       id="remember_me"
+                       name="_remember_me"
+                       value="on"
+                /> {{ 'security.login.remember_me'|trans }}
+            </div><!-- / .checkbox -->
+
+            <input type="submit"
+                   id="_submit"
+                   name="_submit"
+                   value="{{ 'security.login.submit'|trans }}"
+                   class="btn btn-yellow btn-block"
+            />
+        </form>
+        <!-- / form#authForm -->
+
+    </div><!-- / #form-signin -->
+{% endblock %}
