@@ -1,0 +1,14 @@
+BookCreateInput:
+  type: input-object
+  config:
+    description: 'Create book type'
+    fields:
+      title:
+        type: String!
+      author:
+        type: String!
+      readAt:
+        type: DateTime!
+      allowDownload:
+        type: Boolean
+

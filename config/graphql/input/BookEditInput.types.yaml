@@ -1,0 +1,16 @@
+BookEditInput:
+  type: input-object
+  config:
+    description: 'Edit book type'
+    fields:
+      id:
+        type: Int!
+      title:
+        type: String
+      author:
+        type: String
+      readAt:
+        type: DateTime
+      allowDownload:
+        type: Boolean
+

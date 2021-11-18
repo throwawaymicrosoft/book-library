@@ -7,7 +7,7 @@
     {% if app.user is not null %}
         <div class="row">
             <div class="col text-center">
-                <a class="btn btn-outline-info" href="{{ path('book_new') }}">Добавить книгу</a>
+                <a id="book_add" class="btn btn-outline-info" href="{{ path('book_new') }}">Добавить книгу</a>
             </div>
         </div>
     {% endif %}
@@ -15,10 +15,9 @@
     {% for book in books %}
         <div class="row p-1">
             <div class="col-md-8 offset-md-2 card">
-                {% if book.cover is not null %}
+                {% if book.coverFile is not null %}
                     <img class="card-img-top"
-{#                         src="{{ cover_path }}/{{ book.cover }}" #}
-                         src="{{ cover_path }}/{{ book.cover }}"
+                         src="{{ book.coverFile }}"
                          alt="{{ book.title }}">
                 {% endif %}
                 <div class="card-body">

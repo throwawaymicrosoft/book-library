@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d4b1a88b88dd50700a1696e2fd5176f",
+    "content-hash": "2b44d93990ec0fc49a6a096177d1cce7",
     "packages": [
         {
             "name": "brick/math",
@@ -7832,6 +7832,85 @@
             "time": "2021-07-21T12:19:41+00:00"
         },
         {
+            "name": "symfony/web-profiler-bundle",
+            "version": "v4.4.31",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/web-profiler-bundle.git",
+                "reference": "24227617a4ddbdf78f8ab12ce2b76dfb54a7d851"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/24227617a4ddbdf78f8ab12ce2b76dfb54a7d851",
+                "reference": "24227617a4ddbdf78f8ab12ce2b76dfb54a7d851",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "symfony/config": "^4.2|^5.0",
+                "symfony/framework-bundle": "^4.4|^5.0",
+                "symfony/http-kernel": "^4.4",
+                "symfony/polyfill-php80": "^1.16",
+                "symfony/routing": "^4.3|^5.0",
+                "symfony/twig-bundle": "^4.2|^5.0",
+                "twig/twig": "^1.43|^2.13|^3.0.4"
+            },
+            "conflict": {
+                "symfony/form": "<4.3",
+                "symfony/messenger": "<4.2"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "^4.3|^5.0",
+                "symfony/console": "^4.3|^5.0",
+                "symfony/css-selector": "^3.4|^4.0|^5.0",
+                "symfony/dependency-injection": "^3.4|^4.0|^5.0",
+                "symfony/stopwatch": "^3.4|^4.0|^5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bundle\\WebProfilerBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides a development tool that gives detailed information about the execution of any request",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/web-profiler-bundle/tree/v4.4.31"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-09-16T11:24:03+00:00"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v4.4.29",
             "source": {
@@ -8179,6 +8258,151 @@
     ],
     "packages-dev": [
         {
+            "name": "composer/semver",
+            "version": "3.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/semver.git",
+                "reference": "83e511e247de329283478496f7a1e114c9517506"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/semver/zipball/83e511e247de329283478496f7a1e114c9517506",
+                "reference": "83e511e247de329283478496f7a1e114c9517506",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.2 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.54",
+                "symfony/phpunit-bridge": "^4.2 || ^5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Semver\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Adermann",
+                    "email": "naderman@naderman.de",
+                    "homepage": "http://www.naderman.de"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                },
+                {
+                    "name": "Rob Bast",
+                    "email": "rob.bast@gmail.com",
+                    "homepage": "http://robbast.nl"
+                }
+            ],
+            "description": "Semver library that offers utilities, version constraint parsing and validation.",
+            "keywords": [
+                "semantic",
+                "semver",
+                "validation",
+                "versioning"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/semver/issues",
+                "source": "https://github.com/composer/semver/tree/3.2.6"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-25T11:34:17+00:00"
+        },
+        {
+            "name": "composer/xdebug-handler",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/xdebug-handler.git",
+                "reference": "84674dd3a7575ba617f5a76d7e9e29a7d3891339"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/84674dd3a7575ba617f5a76d7e9e29a7d3891339",
+                "reference": "84674dd3a7575ba617f5a76d7e9e29a7d3891339",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.2 || ^7.0 || ^8.0",
+                "psr/log": "^1 || ^2 || ^3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.55",
+                "symfony/phpunit-bridge": "^4.2 || ^5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Composer\\XdebugHandler\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Stevenson",
+                    "email": "john-stevenson@blueyonder.co.uk"
+                }
+            ],
+            "description": "Restarts a process without Xdebug.",
+            "keywords": [
+                "Xdebug",
+                "performance"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/xdebug-handler/issues",
+                "source": "https://github.com/composer/xdebug-handler/tree/2.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-07-31T17:03:58+00:00"
+        },
+        {
             "name": "doctrine/data-fixtures",
             "version": "1.5.1",
             "source": {
@@ -8404,6 +8628,238 @@
             "time": "2021-09-06T14:53:37+00:00"
         },
         {
+            "name": "friendsofphp/php-cs-fixer",
+            "version": "v3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
+                "reference": "b37bf90405cec3f7a83c18e645ef748bcb87ac11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/b37bf90405cec3f7a83c18e645ef748bcb87ac11",
+                "reference": "b37bf90405cec3f7a83c18e645ef748bcb87ac11",
+                "shasum": ""
+            },
+            "require": {
+                "composer/semver": "^3.2",
+                "composer/xdebug-handler": "^2.0",
+                "doctrine/annotations": "^1.12",
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "php": "^7.2.5 || ^8.0",
+                "php-cs-fixer/diff": "^2.0",
+                "symfony/console": "^4.4.20 || ^5.1.3",
+                "symfony/event-dispatcher": "^4.4.20 || ^5.0",
+                "symfony/filesystem": "^4.4.20 || ^5.0",
+                "symfony/finder": "^4.4.20 || ^5.0",
+                "symfony/options-resolver": "^4.4.20 || ^5.0",
+                "symfony/polyfill-mbstring": "^1.23",
+                "symfony/polyfill-php72": "^1.23",
+                "symfony/polyfill-php80": "^1.23",
+                "symfony/polyfill-php81": "^1.23",
+                "symfony/process": "^4.4.20 || ^5.0",
+                "symfony/stopwatch": "^4.4.20 || ^5.0"
+            },
+            "require-dev": {
+                "justinrainbow/json-schema": "^5.2",
+                "keradus/cli-executor": "^1.5",
+                "mikey179/vfsstream": "^1.6.8",
+                "php-coveralls/php-coveralls": "^2.4.3",
+                "php-cs-fixer/accessible-object": "^1.1",
+                "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.2",
+                "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.2.1",
+                "phpspec/prophecy": "^1.10.3",
+                "phpspec/prophecy-phpunit": "^1.1 || ^2.0",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.14 || ^9.5",
+                "phpunitgoodpractices/polyfill": "^1.5",
+                "phpunitgoodpractices/traits": "^1.9.1",
+                "symfony/phpunit-bridge": "^5.2.4",
+                "symfony/yaml": "^4.4.20 || ^5.0"
+            },
+            "suggest": {
+                "ext-dom": "For handling output formats in XML",
+                "ext-mbstring": "For handling non-UTF8 characters."
+            },
+            "bin": [
+                "php-cs-fixer"
+            ],
+            "type": "application",
+            "autoload": {
+                "psr-4": {
+                    "PhpCsFixer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                }
+            ],
+            "description": "A tool to automatically fix PHP code style",
+            "support": {
+                "issues": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues",
+                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v3.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/keradus",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-11-15T18:01:18+00:00"
+        },
+        {
+            "name": "kunicmarko/graphql-test",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kunicmarko20/graphql-test.git",
+                "reference": "95d3ea942cac403d8e3338be8fa545964307c546"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kunicmarko20/graphql-test/zipball/95d3ea942cac403d8e3338be8fa545964307c546",
+                "reference": "95d3ea942cac403d8e3338be8fa545964307c546",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "laravel/laravel": "^5.6",
+                "laravel/lumen-framework": "^5.6",
+                "symfony/browser-kit": "^3.4 || ^4.0 || ^4.1",
+                "symfony/framework-bundle": "^3.4 || ^4.0 || ^4.1",
+                "symfony/phpunit-bridge": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KunicMarko\\GraphQLTest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marko Kunic",
+                    "email": "kunicmarko20@gmail.com",
+                    "homepage": "https://twitter.com/kunicmarko20"
+                }
+            ],
+            "description": "GraphQL Test Cases",
+            "homepage": "https://github.com/kunicmarko20/graphql-test",
+            "keywords": [
+                "graphql",
+                "graphql-test",
+                "laravel",
+                "lumen",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/kunicmarko20/graphql-test/issues",
+                "source": "https://github.com/kunicmarko20/graphql-test/tree/master"
+            },
+            "time": "2020-06-30T09:59:07+00:00"
+        },
+        {
+            "name": "liip/test-fixtures-bundle",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liip/LiipTestFixturesBundle.git",
+                "reference": "ddc176357f55982172de200867f67f831ef9bae6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liip/LiipTestFixturesBundle/zipball/ddc176357f55982172de200867f67f831ef9bae6",
+                "reference": "ddc176357f55982172de200867f67f831ef9bae6",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "^2.13 || ^3.0",
+                "php": "^7.2 || ^8.0",
+                "symfony/event-dispatcher": "^4.4 || ^5.0",
+                "symfony/event-dispatcher-contracts": "^1 || ^2",
+                "symfony/framework-bundle": "^4.4 || ^5.0",
+                "symfony/yaml": "^4.4 || ^5.0"
+            },
+            "conflict": {
+                "doctrine/dbal": "<2.11"
+            },
+            "require-dev": {
+                "doctrine/cache": "^1.10.0",
+                "doctrine/data-fixtures": "^1.3",
+                "doctrine/doctrine-bundle": "^2.1",
+                "doctrine/doctrine-fixtures-bundle": "^3.0.2",
+                "doctrine/orm": "^2.7",
+                "doctrine/phpcr-bundle": "^2.0.2",
+                "doctrine/phpcr-odm": "^1.3",
+                "jackalope/jackalope-doctrine-dbal": "^1.5",
+                "monolog/monolog": "^1.25.1 || ^2.0",
+                "phpunit/phpunit": "^7.5 || ^8.0",
+                "symfony/doctrine-bridge": "^4.4 || ^5.0",
+                "symfony/monolog-bridge": "^4.4 || ^5.0",
+                "symfony/monolog-bundle": "^3.2",
+                "symfony/phpunit-bridge": "^4.4 || ^5.0",
+                "theofidry/alice-data-fixtures": "^1.0.1"
+            },
+            "suggest": {
+                "doctrine/dbal": "Required when using the fixture loading functionality with an ORM and SQLite",
+                "doctrine/doctrine-fixtures-bundle": "Required when using the fixture loading functionality",
+                "doctrine/orm": "Required when using the fixture loading functionality with an ORM and SQLite",
+                "hautelook/alice-bundle": "Required when using loadFixtureFiles functionality with custom providers",
+                "theofidry/alice-data-fixtures": "Required when using loadFixtureFiles functionality"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Liip\\TestFixturesBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liip AG",
+                    "homepage": "http://www.liip.ch/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/liip/LiipTestFixturesBundle/contributors"
+                }
+            ],
+            "description": "This bundles enables efficient loading of Doctrine fixtures in functional test-cases for Symfony applications",
+            "keywords": [
+                "fixtures",
+                "symfony",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/liip/LiipTestFixturesBundle/issues",
+                "source": "https://github.com/liip/LiipTestFixturesBundle/tree/2.1.0"
+            },
+            "time": "2021-10-20T12:28:11+00:00"
+        },
+        {
             "name": "myclabs/deep-copy",
             "version": "1.10.2",
             "source": {
@@ -8518,6 +8974,72 @@
             "time": "2021-11-03T20:52:16+00:00"
         },
         {
+            "name": "overblog/graphiql-bundle",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overblog/GraphiQLBundle.git",
+                "reference": "3161762574dcc6b264e1b6046e5fd2769e4e87c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overblog/GraphiQLBundle/zipball/3161762574dcc6b264e1b6046e5fd2769e4e87c4",
+                "reference": "3161762574dcc6b264e1b6046e5fd2769e4e87c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "symfony/framework-bundle": "^3.4 || ^4.0 || ^5.0",
+                "symfony/twig-bundle": "^3.4 || ^4.0 || ^5.0"
+            },
+            "require-dev": {
+                "overblog/graphql-bundle": ">=0.9",
+                "phpunit/phpunit": "^5.7 || ^6.0",
+                "sensio/framework-extra-bundle": "^3.0 || ^4.0 || ^5.0",
+                "symfony/browser-kit": "^3.4 || ^4.0 || ^5.0",
+                "symfony/templating": "^3.4 || ^4.0 || ^5.0",
+                "symfony/yaml": "^3.4 || ^4.0 || ^5.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overblog\\GraphiQLBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renato Mefi",
+                    "email": "renato@mefi.in"
+                },
+                {
+                    "name": "Overblog",
+                    "homepage": "http://www.over-blog.com"
+                }
+            ],
+            "description": "Symfony GraphiQLBundle makes possible to render the UI into your symfony project",
+            "keywords": [
+                "graphiql",
+                "graphql"
+            ],
+            "support": {
+                "issues": "https://github.com/overblog/GraphiQLBundle/issues",
+                "source": "https://github.com/overblog/GraphiQLBundle/tree/master"
+            },
+            "time": "2020-02-03T16:17:50+00:00"
+        },
+        {
             "name": "phar-io/manifest",
             "version": "2.0.3",
             "source": {
@@ -8627,6 +9149,58 @@
                 "source": "https://github.com/phar-io/version/tree/3.1.0"
             },
             "time": "2021-02-23T14:00:09+00:00"
+        },
+        {
+            "name": "php-cs-fixer/diff",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-CS-Fixer/diff.git",
+                "reference": "29dc0d507e838c4580d018bd8b5cb412474f7ec3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/diff/zipball/29dc0d507e838c4580d018bd8b5cb412474f7ec3",
+                "reference": "29dc0d507e838c4580d018bd8b5cb412474f7ec3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7.23 || ^6.4.3 || ^7.0",
+                "symfony/process": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                },
+                {
+                    "name": "Kore Nordmann",
+                    "email": "mail@kore-nordmann.de"
+                }
+            ],
+            "description": "sebastian/diff v3 backport support for PHP 5.6+",
+            "homepage": "https://github.com/PHP-CS-Fixer",
+            "keywords": [
+                "diff"
+            ],
+            "support": {
+                "issues": "https://github.com/PHP-CS-Fixer/diff/issues",
+                "source": "https://github.com/PHP-CS-Fixer/diff/tree/v2.0.2"
+            },
+            "time": "2020-10-14T08:32:19+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -10539,85 +11113,6 @@
                 }
             ],
             "time": "2021-10-28T19:22:18+00:00"
-        },
-        {
-            "name": "symfony/web-profiler-bundle",
-            "version": "v4.4.31",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "24227617a4ddbdf78f8ab12ce2b76dfb54a7d851"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/24227617a4ddbdf78f8ab12ce2b76dfb54a7d851",
-                "reference": "24227617a4ddbdf78f8ab12ce2b76dfb54a7d851",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3",
-                "symfony/config": "^4.2|^5.0",
-                "symfony/framework-bundle": "^4.4|^5.0",
-                "symfony/http-kernel": "^4.4",
-                "symfony/polyfill-php80": "^1.16",
-                "symfony/routing": "^4.3|^5.0",
-                "symfony/twig-bundle": "^4.2|^5.0",
-                "twig/twig": "^1.43|^2.13|^3.0.4"
-            },
-            "conflict": {
-                "symfony/form": "<4.3",
-                "symfony/messenger": "<4.2"
-            },
-            "require-dev": {
-                "symfony/browser-kit": "^4.3|^5.0",
-                "symfony/console": "^4.3|^5.0",
-                "symfony/css-selector": "^3.4|^4.0|^5.0",
-                "symfony/dependency-injection": "^3.4|^4.0|^5.0",
-                "symfony/stopwatch": "^3.4|^4.0|^5.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Bundle\\WebProfilerBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Provides a development tool that gives detailed information about the execution of any request",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/web-profiler-bundle/tree/v4.4.31"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2021-09-16T11:24:03+00:00"
         },
         {
             "name": "theseer/tokenizer",

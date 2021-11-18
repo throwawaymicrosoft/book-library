@@ -12,6 +12,15 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        graphql:
+            pattern: ^/graphql/
+            stateless: true
+            anonymous: false
+            provider: fos_userbundle
+            guard:
+                authenticators:
+                    - App\Security\TokenAuthenticator
+
         main:
             pattern: ^/
             user_checker: fos_user.user_checker

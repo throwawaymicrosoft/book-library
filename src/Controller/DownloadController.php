@@ -16,12 +16,12 @@ class DownloadController extends AbstractController
      */
     public function download(Book $book): BinaryFileResponse
     {
-        if ($book->getAllowDownload() === false) {
+        if (false === $book->getAllowDownload()) {
             throw new AccessDeniedHttpException();
         }
 
         $response = new BinaryFileResponse(
-            $this->getParameter('store.path') . '/' . $book->getFile(),
+            $this->getParameter('store.path').'/'.$book->getFile(),
         );
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,

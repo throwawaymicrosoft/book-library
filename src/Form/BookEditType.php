@@ -36,7 +36,7 @@ class BookEditType extends BookType
                             'application/x-pdf',
                         ],
                         'mimeTypesMessage' => 'Загружен некорректный PDF-документ',
-                    ])
+                    ]),
                 ],
             ])
             ->add('delete_file', CheckboxType::class, [

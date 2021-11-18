@@ -11,8 +11,8 @@ use Faker\Generator;
 
 class AppFixtures extends Fixture
 {
-    private const NUM_OF_AUTHORS = 3;
-    private const NUM_OF_BOOKS_PER_AUTHOR = 3;
+    private const NUM_OF_AUTHORS = 1;
+    private const NUM_OF_BOOKS_PER_AUTHOR = 1;
 
     private Generator $faker;
 
@@ -23,13 +23,11 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
-
-        for ($i = 1; $i <= self::NUM_OF_AUTHORS; $i++) {
+        for ($i = 1; $i <= self::NUM_OF_AUTHORS; ++$i) {
             $author = new Author();
             $author->setName($this->faker->name);
 
-            for ($j = 1; $j <= self::NUM_OF_BOOKS_PER_AUTHOR; $j++) {
+            for ($j = 1; $j <= self::NUM_OF_BOOKS_PER_AUTHOR; ++$j) {
                 $book = new Book();
                 $book->setTitle($this->faker->realText(255));
                 $book->setAuthor($author);
@@ -37,7 +35,7 @@ class AppFixtures extends Fixture
                 $book->setCover($this->faker->image);
                 $book->setFile($this->faker->image);
                 $book->setOriginalFileName($this->faker->image);
-                $book->setReadAt($this->faker->dateTime);
+                $book->setReadAt($this->faker->dateTime('Y-m-d H:i:s'));
 
                 $manager->persist($book);
             }

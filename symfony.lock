@@ -5,6 +5,12 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },
+    "composer/semver": {
+        "version": "3.2.6"
+    },
+    "composer/xdebug-handler": {
+        "version": "2.0.2"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -106,6 +112,18 @@
     "fakerphp/faker": {
         "version": "v1.16.0"
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
@@ -118,8 +136,14 @@
     "intervention/image": {
         "version": "2.7.0"
     },
+    "kunicmarko/graphql-test": {
+        "version": "0.2.0"
+    },
     "laminas/laminas-code": {
         "version": "4.4.3"
+    },
+    "liip/test-fixtures-bundle": {
+        "version": "2.1.0"
     },
     "monolog/monolog": {
         "version": "1.26.1"
@@ -129,6 +153,18 @@
     },
     "nikic/php-parser": {
         "version": "v4.13.1"
+    },
+    "overblog/graphiql-bundle": {
+        "version": "0.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.1",
+            "ref": "96d185c63491cd15c1570f6243ec1808f4462970"
+        },
+        "files": [
+            "config/routes/dev/graphiql.yaml"
+        ]
     },
     "overblog/graphql-bundle": {
         "version": "0.13",
@@ -149,6 +185,9 @@
     },
     "phar-io/version": {
         "version": "3.1.0"
+    },
+    "php-cs-fixer/diff": {
+        "version": "v2.0.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"

@@ -1,10 +1,13 @@
 overblog_graphql:
     definitions:
         schema:
-            query: Query
+            main:
+                query: AppSchema
+                mutation: AppMutation
+
         mappings:
             types:
                 -
-                    type: graphql
-                    dir: "%kernel.project_dir%/config/graphql/types"
+                    type: yaml
+                    dir: "%kernel.project_dir%/config/graphql/*"
                     suffix: null

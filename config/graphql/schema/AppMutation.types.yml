@@ -1,0 +1,20 @@
+AppMutation:
+  type: object
+  config:
+    fields:
+
+      createBook:
+        description: "Создание книги"
+        type: Book!
+        resolve: '@=resolver("App\\GraphQL\\Mutation\\BookMutation::create", [args["input"]])'
+        args:
+          input:
+            type: BookCreateInput!
+
+      editBook:
+        description: "Редактирование книги"
+        type: Book!
+        resolve: '@=resolver("App\\GraphQL\\Mutation\\BookMutation::edit", [args["input"]])'
+        args:
+          input:
+            type: BookEditInput!

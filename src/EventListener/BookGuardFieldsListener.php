@@ -3,7 +3,6 @@
 namespace App\EventListener;
 
 use App\Entity\Book;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 class BookGuardFieldsListener
@@ -13,7 +12,7 @@ class BookGuardFieldsListener
         $entity = $args->getObject();
 
         if ($entity instanceof Book) {
-            if ($entity->getFile() === null) {
+            if (null === $entity->getFile()) {
                 $entity->setOriginalFileName(null);
                 $entity->setAllowDownload(false);
             }

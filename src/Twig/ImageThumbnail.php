@@ -17,10 +17,10 @@ class ImageThumbnail extends AbstractExtension
     public function getImage(string $image, string $type): string
     {
         $imagePath = explode('.', $image)[0];
-        $imageExtension = '.' . explode('.', $image)[1];
+        $imageExtension = '.'.explode('.', $image)[1];
 
-        if ($type[0] !== '_') {
-            $type = '_' . $type;
+        if ('_' !== $type[0]) {
+            $type = '_'.$type;
         }
 
         return sprintf('%s%s%s',

@@ -1,0 +1,8 @@
+AppSchema:
+  type: object
+  config:
+    fields:
+      books:
+        description: 'Список книг'
+        type: '[Book]'
+        resolve: '@=resolver("App\\Resolver\\BookResolver::getBooks")'

@@ -4,10 +4,11 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    api.token: '%env(X_API_TOKEN)%'
     cache.ttl: '%env(CACHE_TTL)%'
     store.path: '%kernel.project_dir%/var/books'
-    cover.path: '%kernel.project_dir%/public/books'
-    cover.public_path: '/books'
+    cover.path: '%kernel.project_dir%/public/covers'
+    cover.public_path: '/covers'
 
 services:
     # default configuration for services in *this* file
@@ -42,3 +43,28 @@ services:
         tags:
             - name: 'doctrine.event_listener'
               event: 'preUpdate'
+
+    App\EventListener\BookDropCacheListener:
+        tags:
+            - name: 'doctrine.event_listener'
+              event: 'postRemove'
+            - name: 'doctrine.event_listener'
+              event: 'postPersist'
+            - name: 'doctrine.event_listener'
+              event: 'postUpdate'
+
+    file_store:
+        alias: App\Service\FileStoreService
+        public: true
+
+    dto.mapper:
+        alias: App\Service\DtoMapperService
+        public: true
+
+    cache_adapter:
+        alias: App\Service\CacheAdapterService
+        public: true
+
+    book:
+        alias: App\Service\BookService
+        public: true

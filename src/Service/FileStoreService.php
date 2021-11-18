@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Filesystem\Filesystem;
@@ -24,32 +23,32 @@ class FileStoreService
 
     public function store(string $directory, UploadedFile $file): string
     {
-        $uuid = Uuid::uuid1() . '.' . $file->getClientOriginalExtension();
+        $uuid = Uuid::uuid1().'.'.$file->getClientOriginalExtension();
         $prefix = substr($uuid, 0, 2);
 
         try {
-            $file->move($directory . '/' . $prefix, $uuid);
+            $file->move($directory.'/'.$prefix, $uuid);
         } catch (FileException $e) {
             throw new FileException($e);
         }
 
-        return $prefix . '/' . $uuid;
+        return $prefix.'/'.$uuid;
     }
 
     public function storeCover(string $directory, UploadedFile $file): string
     {
-        $manager = new ImageManager(['driver' => 'imagick']);
+        $manager = new ImageManager();
         $fileSystem = new Filesystem();
 
         $uuid = Uuid::uuid1();
         $prefix = substr($uuid, 0, 2);
 
-        if ($fileSystem->exists($directory . '/' . $prefix) === false) {
-            $fileSystem->mkdir($directory . '/' . $prefix);
+        if (false === $fileSystem->exists($directory.'/'.$prefix)) {
+            $fileSystem->mkdir($directory.'/'.$prefix);
         }
 
         foreach (self::COVER_RESIZE_RULES as $key => $rule) {
-            $newFileName = $directory . '/' . $prefix . '/' . $uuid . $key . '.' . $file->getClientOriginalExtension();
+            $newFileName = $directory.'/'.$prefix.'/'.$uuid.$key.'.'.$file->getClientOriginalExtension();
 
             $image = $manager->make($file)->resize($rule, null, function ($constraint): void {
                 $constraint->aspectRatio();
@@ -59,10 +58,10 @@ class FileStoreService
 
         // Возвращаем оригинал
         $originalImage = $manager->make($file);
-        $originalFileName = $directory . '/' . $prefix . '/' . $uuid . '.' . $file->getClientOriginalExtension();
+        $originalFileName = $directory.'/'.$prefix.'/'.$uuid.'.'.$file->getClientOriginalExtension();
         $originalImage->save($originalFileName);
 
-        return $prefix . '/' . $uuid . '.' . $file->getClientOriginalExtension();
+        return $prefix.'/'.$uuid.'.'.$file->getClientOriginalExtension();
     }
 
     public function remove(string $path): void

@@ -21,17 +21,17 @@ class Book
     /**
      * @ORM\Column(type="text")
      */
-    private $title;
+    private ?string $title = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $cover;
+    private ?string $cover = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $file;
+    private ?string $file = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -41,7 +41,7 @@ class Book
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $allow_download;
+    private ?bool $allow_download = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books", cascade={"persist"})
