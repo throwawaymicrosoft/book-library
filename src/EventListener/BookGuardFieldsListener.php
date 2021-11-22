@@ -14,7 +14,7 @@ class BookGuardFieldsListener
         if ($entity instanceof Book) {
             if (null === $entity->getFile()) {
                 $entity->setOriginalFileName(null);
-                $entity->setAllowDownload(false);
+                $entity->setDownloadable(false);
             }
         }
     }

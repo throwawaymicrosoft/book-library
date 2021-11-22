@@ -75,7 +75,7 @@ class ControllerBookTest extends WebTestCase
                 dirname(__DIR__) . '/test.pdf',
                 $this->faker->text(16)
             ),
-            'book[allow_download]' => true,
+            'book[downloadable]' => true,
         ]);
         $this->assertResponseIsSuccessful();
     }

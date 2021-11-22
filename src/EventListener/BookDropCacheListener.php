@@ -3,19 +3,18 @@
 namespace App\EventListener;
 
 use App\Entity\Book;
-use App\Service\CacheAdapter;
+use App\UI\Data\Cache;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 class BookDropCacheListener
 {
-    private CacheAdapter $cacheAdapter;
+    private Cache $cache;
 
-    public function __construct(CacheAdapter $cacheAdapter)
+    public function __construct(Cache $cache)
     {
-        $this->cacheAdapter = $cacheAdapter;
+        $this->cache = $cache;
     }
 
     /**
@@ -27,7 +26,7 @@ class BookDropCacheListener
         $entity = $args->getObject();
 
         if ($entity instanceof Book) {
-            $this->cacheAdapter->delete(Book::class);
+            $this->cache->delete(Book::class);
         }
     }
 

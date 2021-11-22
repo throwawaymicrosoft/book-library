@@ -2,26 +2,26 @@
 
 namespace App\GraphQL\Resolver;
 
-use App\Service\BookManager;
+use App\UI\Data\Cache;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
-use Psr\Container\ContainerExceptionInterface;
+use Psr\Cache\InvalidArgumentException;
 use Psr\Container\NotFoundExceptionInterface;
 
 class BookResolver implements ResolverInterface
 {
-    private BookManager $bookManager;
+    private Cache $cache;
 
-    public function __construct(BookManager $bookManager)
+    public function __construct(Cache $cache)
     {
-        $this->bookManager = $bookManager;
+        $this->cache = $cache;
     }
 
     /**
-     * @throws ContainerExceptionInterface
+     * @throws InvalidArgumentException
      * @throws NotFoundExceptionInterface
      */
     public function getBooks(): array
     {
-        return $this->bookManager->getCachedBooks();
+        return $this->cache->get();
     }
 }

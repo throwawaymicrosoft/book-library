@@ -46,7 +46,7 @@ class BookListenerTest extends KernelTestCase
         $book->setAuthor((new Author())->setName('test name'));
         $book->setFile('test/' . self::PDF_FILENAME);
         $book->setCover('test/' . self::IMAGE_FILENAME);
-        $book->setAllowDownload(true);
+        $book->setDownloadable(true);
         $book->setOriginalFileName('test original');
 
         return $book;
@@ -59,14 +59,14 @@ class BookListenerTest extends KernelTestCase
         $this->entityManager->flush();
         $this->assertNotNull($book->getOriginalFileName());
         $this->assertNotNull($book->getFile());
-        $this->assertTrue($book->getAllowDownload());
+        $this->assertTrue($book->getDownloadable());
 
         $book->setFile(null);
         $this->entityManager->persist($book);
         $this->entityManager->flush();
         $this->assertNull($book->getOriginalFileName());
         $this->assertNull($book->getFile());
-        $this->assertFalse($book->getAllowDownload());
+        $this->assertFalse($book->getDownloadable());
     }
 
     public function testDoctrineListenerDelete(): void

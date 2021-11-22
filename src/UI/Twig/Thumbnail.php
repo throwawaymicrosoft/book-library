@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Twig;
+namespace App\UI\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-class ImageThumbnail extends AbstractExtension
+class Thumbnail extends AbstractExtension
 {
     public function getFilters(): array
     {

@@ -11,6 +11,6 @@ BookEditInput:
         type: String
       readAt:
         type: DateTime
-      allowDownload:
+      downloadable:
         type: Boolean
 

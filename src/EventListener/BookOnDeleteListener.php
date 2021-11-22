@@ -3,7 +3,7 @@
 namespace App\EventListener;
 
 use App\Entity\Book;
-use App\Service\FileStore;
+use App\UI\Helper\File\File;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -12,10 +12,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
  */
 class BookOnDeleteListener
 {
-    private FileStore $fileStore;
+    private File $fileStore;
     private ParameterBagInterface $parameterBag;
 
-    public function __construct(FileStore $fileStore, ParameterBagInterface $parameterBag)
+    public function __construct(File $fileStore, ParameterBagInterface $parameterBag)
     {
         $this->fileStore = $fileStore;
         $this->parameterBag = $parameterBag;
@@ -26,6 +26,7 @@ class BookOnDeleteListener
         $entity = $args->getObject();
 
         if ($entity instanceof Book) {
+
             if (null !== $entity->getFile()) {
                 $this->fileStore->remove(
                     $this->parameterBag->get('store.path').'/'.$entity->getFile(),

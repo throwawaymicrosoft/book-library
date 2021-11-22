@@ -3,12 +3,12 @@
 namespace App\Tests\Functional;
 
 use App\DataFixtures\AppFixtures;
-use App\GraphQL\DTO\BookDTO;
+use App\UI\DTO\BookDTO;
 use Faker\Factory;
+use KunicMarko\GraphQLTest\Bridge\Symfony\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 use KunicMarko\GraphQLTest\Operation\Query;
 use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
-use KunicMarko\GraphQLTest\Bridge\Symfony\TestCase;
 use ReflectionClass;
 use ReflectionProperty;
 

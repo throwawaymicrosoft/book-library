@@ -52,7 +52,7 @@ class BookEditType extends BookType
             $book = $event->getData();
             $form = $event->getForm();
 
-            if ($book->getCover() !== null) {
+            if (null !== $book->getCover()) {
                 $form->add('delete_cover', CheckboxType::class, [
                     'label' => 'Удалить обложку',
                     'required' => false,
@@ -60,7 +60,7 @@ class BookEditType extends BookType
                 ]);
             }
 
-            if ($book->getFile() !== null) {
+            if (null !== $book->getFile()) {
                 $form->add('delete_file', CheckboxType::class, [
                     'label' => 'Удалить файл книги',
                     'required' => false,

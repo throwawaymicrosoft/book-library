@@ -19,6 +19,6 @@ clean:
 	rm -rf docker/data
 
 cs:
-	php vendor/bin/php-cs-fixer fix src
+	php vendor/bin/php-cs-fixer fix src --rules=@Symfony
 
 

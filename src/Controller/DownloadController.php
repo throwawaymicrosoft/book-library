@@ -16,7 +16,7 @@ class DownloadController extends AbstractController
      */
     public function download(Book $book): BinaryFileResponse
     {
-        if (false === $book->getAllowDownload()) {
+        if (false === $book->getDownloadable()) {
             throw new AccessDeniedHttpException();
         }
 

@@ -3,9 +3,9 @@
 namespace App\GraphQL\Mutation;
 
 use App\Entity\Book;
-use App\GraphQL\DTO\BookDTO;
-use App\Service\BookManager;
-use App\Service\DtoMapper;
+use App\UI\Data\Author;
+use App\UI\Data\Mapper;
+use App\UI\DTO\BookDTO;
 use Doctrine\ORM\EntityManagerInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
 use Overblog\GraphQLBundle\Error\UserError;
@@ -15,15 +15,15 @@ use Overblog\GraphQLBundle\Error\UserError;
  */
 class BookMutation implements ResolverInterface
 {
-    private BookManager $bookManager;
     private EntityManagerInterface $entityManager;
-    private DtoMapper $dtoMapper;
+    private Mapper $mapper;
+    private Author $author;
 
-    public function __construct(BookManager $bookManager, EntityManagerInterface $entityManager, DtoMapper $dtoMapper)
+    public function __construct(EntityManagerInterface $entityManager, Mapper $mapper, Author $author)
     {
-        $this->bookManager = $bookManager;
         $this->entityManager = $entityManager;
-        $this->dtoMapper = $dtoMapper;
+        $this->mapper = $mapper;
+        $this->author = $author;
     }
 
     /**
@@ -31,12 +31,13 @@ class BookMutation implements ResolverInterface
      */
     public function create(array $data): BookDTO
     {
-        $book = $this->bookManager->createBook($data);
+        $book = $this->mapper->mapArrayToEntity(new Book(), $data);
+        $book->setAuthor($this->author->get($data['author']));
 
         $this->entityManager->persist($book);
         $this->entityManager->flush();
 
-        return $this->dtoMapper->mapBook($book);
+        return $this->mapper->toDto($book);
     }
 
     /**
@@ -50,11 +51,12 @@ class BookMutation implements ResolverInterface
             throw new UserError(sprintf('Could not find Book#%d', $data['id']));
         }
 
-        $book = $this->bookManager->editBook($data, $book);
+        $book = $this->mapper->mapArrayToEntity($book, $data);
+        $book->setAuthor($this->author->get($data['author']));
 
         $this->entityManager->persist($book);
         $this->entityManager->flush();
 
-        return $this->dtoMapper->mapBook($book);
+        return $this->mapper->toDto($book);
     }
 }

@@ -13,7 +13,7 @@
     {% endif %}
 
     {% for book in books %}
-        <div class="row">
+        <div class="row p-1">
             <div class="col-12 card">
                 {% if book.coverFile is not null %}
                     <img class="card-img-top"
@@ -26,7 +26,7 @@
 
                     <div class="row">
                         <div class="col-6">
-                            {% if book.allowDownload == true %}
+                            {% if book.downloadable == true %}
                                 <a class="btn btn-outline-success"
                                    title="{{ book.originalFileName }}"
                                    href="{{ path('download', {id: book.id}) }}">Скачать</a>

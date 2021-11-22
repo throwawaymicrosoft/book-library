@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\DTO;
+namespace App\UI\DTO;
 
 use DateTimeInterface;
 
@@ -12,7 +12,7 @@ class BookDTO
     public DateTimeInterface $readAt;
     public ?string $pdfFile = null;
     public ?string $originalFileName = null;
-    public bool $allowDownload;
+    public bool $downloadable;
     public ?string $coverFile = null;
 
     public function getId(): int
@@ -102,17 +102,17 @@ class BookDTO
         return $this;
     }
 
-    public function isAllowDownload(): bool
+    public function getDownloadable(): bool
     {
-        return $this->allowDownload;
+        return $this->downloadable;
     }
 
     /**
      * @return BookDTO
      */
-    public function setAllowDownload(bool $allowDownload): self
+    public function setDownloadable(bool $downloadable): self
     {
-        $this->allowDownload = $allowDownload;
+        $this->downloadable = $downloadable;
 
         return $this;
     }

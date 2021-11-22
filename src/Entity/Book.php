@@ -41,7 +41,7 @@ class Book
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $allow_download = false;
+    private ?bool $downloadable = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books", cascade={"persist"})
@@ -107,14 +107,14 @@ class Book
         return $this;
     }
 
-    public function getAllowDownload(): ?bool
+    public function getDownloadable(): ?bool
     {
-        return $this->allow_download;
+        return $this->downloadable;
     }
 
-    public function setAllowDownload(?bool $allow_download): self
+    public function setDownloadable(?bool $downloadable): self
     {
-        $this->allow_download = $allow_download;
+        $this->downloadable = $downloadable;
 
         return $this;
     }

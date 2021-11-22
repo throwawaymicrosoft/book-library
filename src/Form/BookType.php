@@ -66,7 +66,7 @@ class BookType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('allow_download', CheckboxType::class, [
+            ->add('downloadable', CheckboxType::class, [
                 'label' => 'Разрешить скачивание',
                 'required' => false,
             ])

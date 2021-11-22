@@ -8,7 +8,7 @@ Book:
         type: String!
       pdfFile:
         type: String
-      allowDownload:
+      downloadable:
         type: Boolean
       coverFile:
         type: String

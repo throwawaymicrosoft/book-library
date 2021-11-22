@@ -5,12 +5,16 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookEditType;
 use App\Form\BookType;
-use App\GraphQL\DTO\BookDTO;
-use App\Service\BookManager;
-use Psr\Container\ContainerExceptionInterface;
+use App\UI\Data\Author as AuthorHelper;
+use App\UI\Data\Cache;
+use App\UI\DTO\BookDTO;
+use App\UI\Helper\File\Thumbnail;
+use App\UI\Helper\Form\FormHandler;
+use Psr\Cache\InvalidArgumentException;
 use Psr\Container\NotFoundExceptionInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
@@ -24,12 +28,12 @@ class BookController extends AbstractController
     /**
      * @Route("/", name="book_index", methods={"GET"})
      */
-    public function index(BookManager $bookService): Response
+    public function index(Cache $cache): Response
     {
         try {
             /** @var BookDTO[] $books */
-            $books = $bookService->getCachedBooks();
-        } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+            $books = $cache->get();
+        } catch (InvalidArgumentException|NotFoundExceptionInterface $e) {
             throw new ServiceUnavailableHttpException();
         }
 
@@ -40,14 +44,31 @@ class BookController extends AbstractController
      * @Route("/new", name="book_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function new(Request $request, BookManager $bookService): Response
-    {
+    public function new(
+        Request $request,
+        FormHandler $formHandler,
+        ParameterBagInterface $parameterBag,
+        Thumbnail $thumbnails,
+        AuthorHelper $authorHelper
+    ): Response {
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $book = $bookService->createBook($form);
+            $book = $formHandler->handle($form);
+
+            if (null !== $form->get('cover')->getData()) {
+                $thumbnails->generate(
+                    $parameterBag->get('cover.path').'/'.$book->getCover()
+                );
+            }
+
+            $book->setAuthor(
+                $authorHelper->get(
+                    $form->get('author')->getData()
+                )
+            );
 
             $this->getDoctrine()->getManager()->persist($book);
             $this->getDoctrine()->getManager()->flush();
@@ -65,8 +86,14 @@ class BookController extends AbstractController
      * @Route("/{id}/edit", name="book_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Request $request, Book $book, BookManager $bookService): Response
-    {
+    public function edit(
+        Request $request,
+        Book $book,
+        FormHandler $formHandler,
+        Thumbnail $thumbnails,
+        ParameterBagInterface $parameterBag,
+        AuthorHelper $authorHelper
+    ): Response {
         $form = $this->createForm(BookEditType::class, $book);
 
         // Pre-populate form values of unmapped fields
@@ -74,7 +101,21 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $book = $bookService->editBook($form, $book);
+            $book = $formHandler->handle($form);
+
+            if (null !== $form->get('cover')->getData()) {
+                $thumbnails->generate(
+                    $parameterBag->get('cover.path').'/'.$book->getCover()
+                );
+            }
+
+            if ($form->has('author')) {
+                $book->setAuthor(
+                    $authorHelper->get(
+                        $form->get('author')->getData()
+                    )
+                );
+            }
 
             $this->getDoctrine()->getManager()->persist($book);
             $this->getDoctrine()->getManager()->flush();

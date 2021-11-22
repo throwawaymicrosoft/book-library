@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
                 $book = new Book();
                 $book->setTitle($this->faker->realText(255));
                 $book->setAuthor($author);
-                $book->setAllowDownload($this->faker->boolean);
+                $book->setDownloadable($this->faker->boolean);
                 $book->setCover($this->faker->image);
                 $book->setFile($this->faker->image);
                 $book->setOriginalFileName($this->faker->image);
