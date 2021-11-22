@@ -5,7 +5,7 @@
 {% block body %}
 
     {% if app.user is not null %}
-        <div class="row">
+        <div class="row p-5">
             <div class="col text-center">
                 <a id="book_add" class="btn btn-outline-info" href="{{ path('book_new') }}">Добавить книгу</a>
             </div>
@@ -13,8 +13,8 @@
     {% endif %}
 
     {% for book in books %}
-        <div class="row p-1">
-            <div class="col-md-8 offset-md-2 card">
+        <div class="row">
+            <div class="col-12 card">
                 {% if book.coverFile is not null %}
                     <img class="card-img-top"
                          src="{{ book.coverFile }}"

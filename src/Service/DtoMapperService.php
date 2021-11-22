@@ -25,10 +25,12 @@ class DtoMapperService
             : null;
 
         $coverLink = null !== $book->getCover()
-            ? sprintf('%s%s/%s',
+            ? sprintf(
+                '%s%s/%s',
                 $this->container->get('request_stack')->getMasterRequest()->getSchemeAndHttpHost(),
                 $this->container->getParameter('cover.public_path'),
-                $book->getCover())
+                $book->getCover()
+            )
             : null;
 
         return (new BookDTO())
@@ -36,11 +38,13 @@ class DtoMapperService
             ->setTitle($book->getTitle())
             ->setAuthor($book->getAuthor())
             ->setReadAt($book->getReadAt())
-            ->setPdfFile(true === $book->getAllowDownload()
+            ->setPdfFile(
+                true === $book->getAllowDownload()
                 ? $pdfLink
                 : null
             )
-            ->setOriginalFileName(null !== $book->getFile()
+            ->setOriginalFileName(
+                null !== $book->getFile()
                 ? $book->getOriginalFileName()
                 : null
             )

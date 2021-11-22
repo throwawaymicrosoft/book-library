@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FileStoreService
 {
     public const COVER_RESIZE_RULES = [
-        '_thumb' => 300,
+        '_thumb' => 100,
     ];
 
     private Filesystem $filesystem;

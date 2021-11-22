@@ -1,45 +1,73 @@
 {{ form_start(form) }}
+{{ form_errors(form) }}
 
-<div class="row p-2">
-    {% if form.vars.value.cover is not null %}
-        <div class="col-4">
-            <div class="row">
-                <div class="col-12">
-                    <img class="img-thumbnail" src="{{ cover_path }}/{{ form.vars.value.cover|thumbnail('thumb') }}">
-                </div>
-                <div class="col-12">
-                    {{ form_widget(form.delete_cover) }}
-                </div>
-            </div>
-        </div>
-    {% endif %}
-    <div class="col-8">
-        <div class="row">
-            <div class="col-12">
-                {{ form_widget(form.cover) }}
-            </div>
-        </div>
+<div class="row">
+    <div class="col-12">
+        {{ form_row(form.title) }}
     </div>
 </div>
 
-<div class="row p-2">
-    {% if form.vars.value.file is not null %}
-        <div class="row">
-            <div class="col-6">
-                <div class="row">
-                    <div class="col-12">
-                        <code>{{ form.vars.value.originalFileName }}</code>
-                    </div>
-                    <div class="col-12">
-                        {{ form_widget(form.delete_file) }}
-                    </div>
+{% if form.vars.value.cover is not null %}
+    <div class="row">
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img class="img-thumbnail" src="{{ cover_path }}/{{ form.vars.value.cover|thumbnail('thumb') }}"
+                         alt="{{ cover_path }}">
+                </div>
+                <div class="col-12">
+                    {{ form_row(form.delete_cover) }}
                 </div>
             </div>
-            <div class="col-6">
-                {{ form_widget(form.file) }}
+        </div>
+        <div class="col-8">
+            {{ form_row(form.cover) }}
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-12">
+            {{ form_row(form.cover) }}
+        </div>
+    </div>
+{% endif %}
+
+
+{% if form.vars.value.file is not null %}
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <code>{{ form.vars.value.originalFileName }}</code>
+                </div>
+                <div class="col-12">
+                    {{ form_row(form.delete_file) }}
+                </div>
             </div>
         </div>
-    {% endif %}
+        <div class="col-6">
+            {{ form_row(form.file) }}
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-12">
+            {{ form_row(form.file) }}
+        </div>
+    </div>
+{% endif %}
+
+
+<div class="row">
+    <div class="col-12">
+        {{ form_row(form.allow_download) }}
+    </div>
+    <div class="col-12">
+        {{ form_row(form.read_at) }}
+    </div>
+    <div class="col-12">
+        {{ form_row(form.author) }}
+    </div>
 </div>
 {{ form_end(form) }}
 

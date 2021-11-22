@@ -23,7 +23,8 @@ class ImageThumbnail extends AbstractExtension
             $type = '_'.$type;
         }
 
-        return sprintf('%s%s%s',
+        return sprintf(
+            '%s%s%s',
             $imagePath,
             $type,
             $imageExtension

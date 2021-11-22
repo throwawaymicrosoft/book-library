@@ -41,6 +41,13 @@ class BookType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank(),
+                    new File([
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Загружено некорректное изображение обложки',
+                    ]),
                 ],
             ])
             ->add('file', FileType::class, [
@@ -81,7 +88,7 @@ class BookType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Добавить',
+                'label' => 'Сохранить',
             ]);
     }
 

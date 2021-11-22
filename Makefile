@@ -1,5 +1,3 @@
-.PHONY: run migrate
-
 build:
 	docker-compose down
 	docker-compose build --parallel
@@ -18,4 +16,9 @@ clean:
 	docker-compose down
 	docker system prune -af
 	docker image prune -af
+	rm -rf docker/data
+
+cs:
+	php vendor/bin/php-cs-fixer fix src
+
 

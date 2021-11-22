@@ -19,8 +19,12 @@
 <body>
 
 {% include 'nav.html.twig' %}
-<div class="container pt-2">
-    {% block body %}{% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
 </div>
 
 </body>
