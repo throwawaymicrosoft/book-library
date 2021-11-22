@@ -4,16 +4,19 @@ namespace App\Service;
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
-class CacheAdapterService
+class CacheAdapter
 {
-    private ContainerInterface $container;
+    private CacheInterface $cache;
+    private ParameterBagInterface $parameterBag;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(CacheInterface $cache, ParameterBagInterface $parameterBag)
     {
-        $this->container = $container;
+        $this->cache = $cache;
+        $this->parameterBag = $parameterBag;
     }
 
     private function guardKey(string $key): string
@@ -29,8 +32,8 @@ class CacheAdapterService
      */
     public function get(string $key, callable $function)
     {
-        return $this->container->get('cache.app')->get($this->guardKey($key), function (ItemInterface $item) use ($function) {
-            $item->expiresAfter((int) $this->container->getParameter('cache.ttl'));
+        return $this->cache->get($this->guardKey($key), function (ItemInterface $item) use ($function) {
+            $item->expiresAfter((int) $this->parameterBag->get('cache.ttl'));
 
             return $function();
         });
@@ -42,6 +45,6 @@ class CacheAdapterService
      */
     public function delete(string $key): void
     {
-        $this->container->get('cache.app')->delete($this->guardKey($key));
+        $this->cache->delete($this->guardKey($key));
     }
 }

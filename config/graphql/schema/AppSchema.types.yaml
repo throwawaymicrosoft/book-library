@@ -5,4 +5,4 @@ AppSchema:
       books:
         description: 'Список книг'
         type: '[Book]'
-        resolve: '@=resolver("App\\Resolver\\BookResolver::getBooks")'
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\BookResolver::getBooks")'

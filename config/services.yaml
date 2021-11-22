@@ -52,19 +52,3 @@ services:
               event: 'postPersist'
             - name: 'doctrine.event_listener'
               event: 'postUpdate'
-
-    file_store:
-        alias: App\Service\FileStoreService
-        public: true
-
-    dto.mapper:
-        alias: App\Service\DtoMapperService
-        public: true
-
-    cache_adapter:
-        alias: App\Service\CacheAdapterService
-        public: true
-
-    book:
-        alias: App\Service\BookService
-        public: true

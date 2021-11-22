@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,11 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 {
     public const TOKEN_NAME = 'X-API-TOKEN';
 
-    private ContainerInterface $container;
+    private ParameterBagInterface $parameterBag;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ParameterBagInterface $parameterBag)
     {
-        $this->container = $container;
+        $this->parameterBag = $parameterBag;
     }
 
     public function supports(Request $request): bool
@@ -35,7 +36,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
-        if ($this->container->getParameter('api.token') === $credentials) {
+        if ($this->parameterBag->get('api.token') === $credentials) {
             return new VirtualApiUser();
         }
 

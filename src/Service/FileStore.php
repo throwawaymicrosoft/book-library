@@ -8,7 +8,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileStoreService
+class FileStore
 {
     public const COVER_RESIZE_RULES = [
         '_thumb' => 100,

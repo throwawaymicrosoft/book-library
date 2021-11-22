@@ -74,7 +74,7 @@ class GraphQLTest extends TestCase
         $preMutation = $this->countBooks();
         $this->assertGreaterThan(0, $preMutation);
 
-        $this->mutation(
+        $mutation = $this->mutation(
             new Mutation(
                 'createBook',
                 [

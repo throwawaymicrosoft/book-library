@@ -6,7 +6,7 @@ use App\Entity\Book;
 use App\Form\BookEditType;
 use App\Form\BookType;
 use App\GraphQL\DTO\BookDTO;
-use App\Service\BookService;
+use App\Service\BookManager;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -24,7 +24,7 @@ class BookController extends AbstractController
     /**
      * @Route("/", name="book_index", methods={"GET"})
      */
-    public function index(BookService $bookService): Response
+    public function index(BookManager $bookService): Response
     {
         try {
             /** @var BookDTO[] $books */
@@ -40,7 +40,7 @@ class BookController extends AbstractController
      * @Route("/new", name="book_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function new(Request $request, BookService $bookService): Response
+    public function new(Request $request, BookManager $bookService): Response
     {
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
@@ -65,7 +65,7 @@ class BookController extends AbstractController
      * @Route("/{id}/edit", name="book_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Request $request, Book $book, BookService $bookService): Response
+    public function edit(Request $request, Book $book, BookManager $bookService): Response
     {
         $form = $this->createForm(BookEditType::class, $book);
 

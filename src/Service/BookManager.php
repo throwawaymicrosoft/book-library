@@ -5,20 +5,35 @@ namespace App\Service;
 use App\Entity\Author;
 use App\Entity\Book;
 use App\GraphQL\DTO\BookDTO;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class BookService
+class BookManager
 {
-    private ContainerInterface $container;
+    private CacheAdapter $cacheAdapter;
+    private DtoMapper $dtoMapper;
+    private EntityManagerInterface $entityManager;
+    private FileStore $fileStore;
+    private ParameterBagInterface $parameterBag;
 
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        CacheAdapter $cacheAdapter,
+        DtoMapper $dtoMapper,
+        EntityManagerInterface $entityManager,
+        FileStore $fileStore,
+        ParameterBagInterface $parameterBag
+    ) {
+        $this->cacheAdapter = $cacheAdapter;
+        $this->dtoMapper = $dtoMapper;
+        $this->entityManager = $entityManager;
+        $this->fileStore = $fileStore;
+        $this->parameterBag = $parameterBag;
     }
 
     /**
@@ -27,18 +42,17 @@ class BookService
      */
     public function getCachedBooks(): array
     {
-        return $this->container->get('cache_adapter')->get(Book::class, function (): array {
+        return $this->cacheAdapter->get(Book::class, function (): array {
             return array_map(function (Book $book): BookDTO {
-                return $this->container->get('dto.mapper')->mapBook($book);
-            }, $this->container->get('doctrine')->getManager()->getRepository(Book::class)->getAllBooks());
+                return $this->dtoMapper->mapBook($book);
+            }, $this->entityManager->getRepository(Book::class)->getAllBooks());
         });
     }
 
     private function getAuthor(string $name): Author
     {
-        $author = $this->container->get('doctrine')
-            ->getManager()
-            ->getRepository(Author::class)->findOneBy(compact('name'));
+        $author = $this->entityManager->getRepository(Author::class)
+            ->findOneBy(compact('name'));
 
         if (null === $author) {
             $author = new Author();
@@ -57,8 +71,8 @@ class BookService
         /** @var UploadedFile|null $pdfFile */
         $pdfFile = $data->get('file')->getData();
         if (null !== $pdfFile) {
-            $pdfFileName = $this->container->get('file_store')->store(
-                $this->container->getParameter('store.path'),
+            $pdfFileName = $this->fileStore->store(
+                $this->parameterBag->get('store.path'),
                 $pdfFile,
             );
             $book->setFile($pdfFileName);
@@ -68,8 +82,8 @@ class BookService
         /** @var UploadedFile|null $bookFile */
         $coverFile = $data->get('cover')->getData();
         if (null !== $coverFile) {
-            $coverFileName = $this->container->get('file_store')->storeCover(
-                $this->container->getParameter('cover.path'),
+            $coverFileName = $this->fileStore->storeCover(
+                $this->parameterBag->get('cover.path'),
                 $coverFile,
             );
             $book->setCover($coverFileName);
@@ -77,16 +91,16 @@ class BookService
 
         if ($data->has('delete_cover')) {
             if (true === $data->get('delete_cover')->getData()) {
-                $this->container->get('file_store')->remove(
-                    $this->container->getParameter('cover.path').'/'.$book->getCover()
+                $this->fileStore->remove(
+                    $this->parameterBag->get('cover.path').'/'.$book->getCover()
                 );
                 $book->setCover(null);
             }
         }
         if ($data->has('delete_file')) {
             if (true === $data->get('delete_file')->getData()) {
-                $this->container->get('file_store')->remove(
-                    $this->container->getParameter('store.path').'/'.$book->getFile()
+                $this->fileStore->remove(
+                    $this->parameterBag->get('store.path').'/'.$book->getFile()
                 );
                 $book->setFile(null);
             }
@@ -95,7 +109,7 @@ class BookService
         return $book;
     }
 
-    private function handleArray(array $data, ?Book $book = null)
+    private function handleArray(array $data, ?Book $book = null): Book
     {
         $ignoreFields = ['id', 'author'];
 

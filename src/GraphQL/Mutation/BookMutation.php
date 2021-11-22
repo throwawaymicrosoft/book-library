@@ -4,25 +4,39 @@ namespace App\GraphQL\Mutation;
 
 use App\Entity\Book;
 use App\GraphQL\DTO\BookDTO;
+use App\Service\BookManager;
+use App\Service\DtoMapper;
+use Doctrine\ORM\EntityManagerInterface;
+use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
 use Overblog\GraphQLBundle\Error\UserError;
 
 /**
  * GraphQL мутации сущности книги.
  */
-class BookMutation extends AbstractMutation
+class BookMutation implements ResolverInterface
 {
+    private BookManager $bookManager;
+    private EntityManagerInterface $entityManager;
+    private DtoMapper $dtoMapper;
+
+    public function __construct(BookManager $bookManager, EntityManagerInterface $entityManager, DtoMapper $dtoMapper)
+    {
+        $this->bookManager = $bookManager;
+        $this->entityManager = $entityManager;
+        $this->dtoMapper = $dtoMapper;
+    }
+
     /**
      * GraphQL создание книги (кроме файла книги и обложки).
      */
     public function create(array $data): BookDTO
     {
-        $book = $this->container->get('book')->createBook($data);
+        $book = $this->bookManager->createBook($data);
 
-        $this->getDoctrine()->persist($book);
-        $this->getDoctrine()->flush();
+        $this->entityManager->persist($book);
+        $this->entityManager->flush();
 
-        return $this->container->get('dto.mapper')
-            ->mapBook($book, );
+        return $this->dtoMapper->mapBook($book);
     }
 
     /**
@@ -31,17 +45,16 @@ class BookMutation extends AbstractMutation
     public function edit(array $data): BookDTO
     {
         /** @var Book|null $book */
-        $book = $this->getDoctrine()->getRepository(Book::class)->find($data['id']);
+        $book = $this->entityManager->getRepository(Book::class)->find($data['id']);
         if (null === $book) {
             throw new UserError(sprintf('Could not find Book#%d', $data['id']));
         }
 
-        $book = $this->container->get('book')->editBook($data, $book);
+        $book = $this->bookManager->editBook($data, $book);
 
-        $this->getDoctrine()->persist($book);
-        $this->getDoctrine()->flush();
+        $this->entityManager->persist($book);
+        $this->entityManager->flush();
 
-        return $this->container->get('dto.mapper')
-            ->mapBook($book, );
+        return $this->dtoMapper->mapBook($book);
     }
 }

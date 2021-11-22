@@ -61,8 +61,9 @@ class ControllerBookTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $client->clickLink('Добавить книгу');
+        $this->assertResponseIsSuccessful();
 
-        $client->submitForm('Добавить', [
+        $client->submitForm('Сохранить', [
             'book[title]' => $this->faker->text(64),
             'book[author]' => $this->faker->name(),
             'book[read_at]' => $this->faker->dateTime()->format('Y-m-d H:i:s'),
